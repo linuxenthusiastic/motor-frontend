@@ -23,6 +23,19 @@ export async function login(
   return data;
 }
 
+export interface Dealer {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+}
+
+export async function getMe(): Promise<Dealer> {
+  const response = await apiFetch("/auth/me");
+  if (!response.ok) throw new Error("Error al obtener perfil");
+  return response.json() as Promise<Dealer>;
+}
+
 export async function register(
   name: string,
   email: string,
