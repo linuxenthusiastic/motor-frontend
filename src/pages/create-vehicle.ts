@@ -6,25 +6,37 @@ export function renderCreateVehicle(
   onCancel: () => void,
 ): void {
   container.innerHTML = `
-    <form id="create-vehicle-form">
-      <h2>Agregar vehículo</h2>
-      <label for="brand">Marca</label>
-      <input type="text" id="brand" required />
-      <label for="model">Modelo</label>
-      <input type="text" id="model" required />
-      <label for="year">Año</label>
-      <input type="number" id="year" min="1900" max="2100" required />
-      <label for="color">Color</label>
-      <input type="text" id="color" required />
-      <label for="plate">Patente</label>
-      <input type="text" id="plate" required />
-      <label for="vin">VIN</label>
-      <input type="text" id="vin" required />
-      <div style="display:flex;gap:8px;margin-top:8px;">
-        <button type="submit">Guardar</button>
-        <button type="button" id="cancel-btn">Cancelar</button>
+    <form id="create-vehicle-form" class="form">
+      <h2 class="form__title">Agregar vehículo</h2>
+      <div class="form__field">
+        <label class="form__label" for="brand">Marca</label>
+        <input class="form__input" type="text" id="brand" required />
       </div>
-      <p id="create-error" style="color:red;"></p>
+      <div class="form__field">
+        <label class="form__label" for="model">Modelo</label>
+        <input class="form__input" type="text" id="model" required />
+      </div>
+      <div class="form__field">
+        <label class="form__label" for="year">Año</label>
+        <input class="form__input" type="number" id="year" min="1900" max="2100" required />
+      </div>
+      <div class="form__field">
+        <label class="form__label" for="color">Color</label>
+        <input class="form__input" type="text" id="color" required />
+      </div>
+      <div class="form__field">
+        <label class="form__label" for="plate">Patente</label>
+        <input class="form__input" type="text" id="plate" required />
+      </div>
+      <div class="form__field">
+        <label class="form__label" for="vin">VIN</label>
+        <input class="form__input" type="text" id="vin" required />
+      </div>
+      <div class="form__actions">
+        <button class="btn btn--primary" type="submit">Guardar</button>
+        <button class="btn btn--secondary" type="button" id="cancel-btn">Cancelar</button>
+      </div>
+      <p class="form__error" id="create-error"></p>
     </form>
   `;
 
@@ -35,7 +47,6 @@ export function renderCreateVehicle(
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-
     const get = (id: string) => (document.querySelector(`#${id}`) as HTMLInputElement).value;
     const errorEl = document.querySelector("#create-error");
 
